@@ -74,7 +74,7 @@ const Card = styled.div`
     position: absolute;
     left: 0;
     width: 100%;
-    heighr: 100%;
+    height: 100%;
     object-fit: cover;
   }
 
