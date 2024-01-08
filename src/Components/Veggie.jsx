@@ -1,31 +1,30 @@
 import React from 'react'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import '@splidejs/react-splide/css';
-import { Gradient, Wrapper, Card } from '../Components/Popular'
 
 
 const Veggie = () => {
-    const [popular, setPopular] = useState([]);
+    const [veggie, setVeggie] = useState([]);
 
    useEffect(() => {
-    getPopular();
+    getVeggie();
    },[]);
 
-   const getPopular = async () => {
-        const check = localStorage.getItem("popular");
+   const getVeggie = async () => {
+        const check = localStorage.getItem("veggie");
 
         if (check) {
-            setPopular(JSON.parse(check));
+            setVeggie(JSON.parse(check));
         } else{
             const api = await fetch(
-            `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=19`
+            `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`
             );
             const data = await api.json();
 
-            localStorage.setItem("populr", JSON.stringify(data.recipes));
-            setPopular(data.recipes);
+            localStorage.setItem("veggie", JSON.stringify(data.recipes));
+            setVeggie(data.recipes);
             console.log(data.recipes);
         }
    };
@@ -33,25 +32,25 @@ const Veggie = () => {
   return (
     <div>
         <Wrapper>
-            <h3>Popular Recipes</h3>
+            <h3>Our Vegetarian Recipes</h3>
 
             <Splide
               options={{
-                perPage: 4,
+                perPage: 3,
                 arrows: false,
                 pagination: false,
                 drag: "free",
                 gap: "5rem",
               }}
             > 
-                {popular.map((recipe) => {
+                {veggie.map((recipe) => {
                     return (
                         <SplideSlide key={recipe.id}>
                             <Card>
                                 <p>{recipe.title}</p>
                                 <img src={recipe.image} alt={recipe.title} />
                                 <Gradient />
-                            </Card>
+                            </Card> 
                         </SplideSlide>
                     )
                  })}
