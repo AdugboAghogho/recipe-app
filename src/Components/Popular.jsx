@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Spilde, SplideSlide } from '@splidejs/react-splide'
+import { Splide, SplideSlide } from '@splidejs/react-splide'
 import '@splidejs/react-splide/css';
 
 const Popular = () => {
@@ -21,21 +21,31 @@ const Popular = () => {
 
   return (
     <div>
-      {popular.map((recipe) => {
-        return (
-            <Wrapper>
-                <h3>Popular Recipes</h3>
+        <Wrapper>
+            <h3>Popular Recipes</h3>
+
+            <Splide
+              options={{
+                perPage: 4,
+                arrows: false,
+                pagination: false,
+                drag: "free",
+                gap: "5rem",
+              }}
+            > 
                 {popular.map((recipe) => {
                     return (
-                        <Card>
-                            <p>{recipe.title}</p>
-                            <img src={recipe.image} alt={recipe.title} />
-                        </Card>
+                        <SplideSlide>
+                            <Card>
+                                <p>{recipe.title}</p>
+                                <img src={recipe.image} alt={recipe.title} />
+                            </Card>
+                        </SplideSlide>
                     )
-                })}
-            </Wrapper>
-        );
-      })}
+                 })}
+            </Splide>
+        </Wrapper>
+
     </div>
   )
 }
@@ -50,7 +60,7 @@ const Card = styled.div`
   overflow: hidden;
 
   img{
-    border-radius: 2rem 10rem;
+    border-radius: 7rem 2rem;
   }
 `;
 
