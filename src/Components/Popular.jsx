@@ -21,7 +21,7 @@ const Popular = () => {
             );
             const data = await api.json();
 
-            localStorage.setItem("popular", JSON.stringify(data.recipes));
+            localStorage.setItem("populr", JSON.stringify(data.recipes));
             setPopular(data.recipes);
             console.log(data.recipes);
         }
@@ -97,11 +97,11 @@ const Card = styled.div`
 `;
 
 const Gradient = styled.div`
-z-index: 3;
-position: absolute;
-width: 100%;
-height: 100%;
-background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+    z-index: 3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
 `;
 
 export default Popular
