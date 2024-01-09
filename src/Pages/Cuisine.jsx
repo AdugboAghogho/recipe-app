@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Cuisine() {
@@ -53,6 +53,8 @@ const Card = styled.div`
         padding: 1rem;
     }
 `;
+
+
 
 
 export default Cuisine
