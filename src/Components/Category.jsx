@@ -7,7 +7,7 @@ import styled from 'styled-components'
 
 const Category = () => {
   return (
-    <Lisk>
+    <List>
       <NavLink to={"/cuisine/Italian"}>
         <FaPizzaSlice />
         <h4>Italian</h4>
@@ -27,11 +27,11 @@ const Category = () => {
         <GiChopsticks />
         <h4>Japanese</h4>
       </NavLink>
-    </Lisk>
+    </List>
   )
 }
 
-const List = styled.NavLink`
+const List = styled.div`
 display: flex;
 justify-content: center;
 margin: 2rem 0rem;
