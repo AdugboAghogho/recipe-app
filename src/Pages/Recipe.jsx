@@ -34,13 +34,27 @@ function Recipe() {
                 >
                     Instructions
                 </Button>
-                
+
                 <Button 
                     className={activeTab === "ingredients" ? 'active' : ''} 
                     onClick={() => setActiveTab("ingredients")}
                 >
                     Ingredients
                 </Button>
+                {activeTab === "instructions" && (
+                    <div>
+                      
+                        <h4 dangerouslySetInnerHTML={{ __html: details.instructions }}></h4>
+                    </div>
+                )}
+
+                {activeTab === "ingredients" && (
+                    <ul>
+                        {details.extendedIngredients.map((ingredient) => (
+                            <li key={ingredient.id}>{ingredient.original}</li>
+                        ))}
+                    </ul>
+                )}
             </Info>
        </DetailWrapper>
   );
