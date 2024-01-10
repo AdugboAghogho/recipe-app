@@ -6,26 +6,26 @@ import '@splidejs/react-splide/css';
 import { Link } from 'react-router-dom';
 
 
-const Snack = () => {
-    const [snack, setSnack] = useState([]);
+const Bread = () => {
+    const [bread, setBread] = useState([]);
 
    useEffect(() => {
-    getSnack();
+    getBread();
    },[]);
 
-   const getSnack = async () => {
-        const check = localStorage.getItem("snack");
+   const getBread = async () => {
+        const check = localStorage.getItem("bread");
 
         if (check) {
-            setSnack(JSON.parse(check));
+            setBread(JSON.parse(check));
         } else{
             const api = await fetch(
-            `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=25&tags=snack`
+            `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=40&tags=bread`
             );
             const data = await api.json();
 
-            localStorage.setItem("snack", JSON.stringify(data.recipes));
-            setSnack(data.recipes);
+            localStorage.setItem("bread", JSON.stringify(data.recipes));
+            setBread(data.recipes);
             console.log(data.recipes);
         }
    };
@@ -33,18 +33,18 @@ const Snack = () => {
   return (
     <div>
         <Wrapper>
-            <h3>Our Snacks Recipes</h3>
+            <h3>Our Breads Recipes</h3>
 
             <Splide
               options={{
-                perPage: 3,
+                perPage: 4,
                 arrows: false,
                 pagination: false,
                 drag: "free",
                 gap: "5rem",
               }}
             > 
-                {snack.map((recipe) => {
+                {bread.map((recipe) => {
                     return (
                         <SplideSlide key={recipe.id}>
                             <Card>
@@ -109,4 +109,4 @@ const Gradient = styled.div`
     background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
 `;
 
-export default Snack
+export default Bread
