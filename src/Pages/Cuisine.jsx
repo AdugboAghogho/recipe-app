@@ -24,10 +24,12 @@ function Cuisine() {
     <Grid>
       {cuisine.map((item) => {
         return(
-            <Card key={item.id}>
-                <img src={item.image} alt={item.title} />
-                <h4>{item.title}</h4>
-            </Card>
+            <Link to={"/recipe/" + item.id}>
+                <Card key={item.id}>
+                    <img src={item.image} alt={item.title} />
+                    <h4>{item.title}</h4>
+                </Card>
+            </Link>
         )
       })}
     </Grid>
