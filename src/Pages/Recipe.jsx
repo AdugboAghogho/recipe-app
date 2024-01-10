@@ -5,6 +5,7 @@ import styled from 'styled-components';
 function Recipe() {
     let params = useParams();
     const [details, setDetails] = useState({});
+    const [activeTab, setActiveTab] = useState("instruction");
 
     
     const fetchDetails = async () => {
@@ -27,8 +28,19 @@ function Recipe() {
             </div>
 
             <Info>
-                <Button>Instructions</Button>
-                <Button>Ingredients</Button>
+                <Button 
+                    className={activeTab === "instructions" ? 'active' : ''} 
+                    onClick={() => setActiveTab("instructions")}
+                >
+                    Instructions
+                </Button>
+                
+                <Button 
+                    className={activeTab === "ingredients" ? 'active' : ''} 
+                    onClick={() => setActiveTab("ingredients")}
+                >
+                    Ingredients
+                </Button>
             </Info>
        </DetailWrapper>
   );
@@ -70,6 +82,7 @@ const Button = styled.button `
     margin-right: 2rem;
     font-weight: 600;
     border-radius: 5rem 2rem;
+    cursor: pointer;
 `;
 
 const Info = styled.div`
